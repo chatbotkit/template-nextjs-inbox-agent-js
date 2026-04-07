@@ -1,6 +1,6 @@
 # Inbox Agent Template for Next.js / ChatBotKit / JS
 
-An autonomous email inbox management agent powered by ChatBotKit. Connect your Gmail account via ChatBotKit's personal secrets, then toggle pre-defined tasks on and off to let the AI bot automatically draft responses, categorize emails, and generate daily digests.
+An autonomous email inbox management agent powered by ChatBotKit. Sign in with Google, connect the personal secrets required by your ChatBotKit bot, then toggle pre-defined tasks on and off to let the agent draft responses, categorize emails, and generate daily digests automatically.
 
 ## Why ChatBotKit?
 
@@ -15,7 +15,7 @@ ChatBotKit provides the conversational AI backbone that powers the Inbox Agent's
 ## Features
 
 - **Google OAuth Sign-In** - Secure authentication using your Google account
-- **Dedicated Connections Page** - Connect and manage service integrations (Gmail, etc.) via ChatBotKit personal secrets with connect/revoke controls
+- **Dedicated Connections Page** - Connect and manage the integrations required by your bot via ChatBotKit personal secrets with connect/revoke controls
 - **Pre-Defined Tasks** - Three built-in tasks (email drafting, categorization, daily digest) that users simply toggle on or off
 - **Autonomous Operation** - The ChatBotKit bot handles email processing through its configured abilities on automatic schedules
 - **ChatBotKit Integration** - Powered by ChatBotKit's task, contact, and GraphQL APIs
@@ -55,7 +55,7 @@ cp .env.example .env.local
 ### 4. Set up ChatBotKit
 
 1. Create an account at [ChatBotKit](https://chatbotkit.com)
-2. Create a new bot with Gmail abilities (the bot needs a skillset with Gmail read/write actions configured as personal secrets)
+2. Create a new bot with the email abilities and personal secrets your workflow needs
 3. Copy your API secret token from [Tokens](https://chatbotkit.com/tokens)
 4. Add the bot ID and API secret to your `.env.local`
 
@@ -69,14 +69,14 @@ Open [http://localhost:3000](http://localhost:3000) to get started.
 
 ## Environment Variables
 
-| Variable | Description |
-|----------|-------------|
-| `CHATBOTKIT_API_SECRET` | Your ChatBotKit API secret token |
-| `CHATBOTKIT_BOT_ID` | The bot ID configured with Gmail abilities |
-| `NEXTAUTH_SECRET` | Random string for NextAuth session encryption |
-| `NEXTAUTH_URL` | Your app URL (e.g., `http://localhost:3000`) |
-| `GOOGLE_CLIENT_ID` | Google OAuth client ID (for user sign-in) |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| Variable                | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `CHATBOTKIT_API_SECRET` | Your ChatBotKit API secret token              |
+| `CHATBOTKIT_BOT_ID`     | The bot ID configured with Gmail abilities    |
+| `NEXTAUTH_SECRET`       | Random string for NextAuth session encryption |
+| `NEXTAUTH_URL`          | Your app URL (e.g., `http://localhost:3000`)  |
+| `GOOGLE_CLIENT_ID`      | Google OAuth client ID (for user sign-in)     |
+| `GOOGLE_CLIENT_SECRET`  | Google OAuth client secret                    |
 
 ## How It Works
 
@@ -88,7 +88,7 @@ Open [http://localhost:3000](http://localhost:3000) to get started.
 
 ### Connections Flow
 
-1. After sign-in, the `/connect` page lists all personal secrets required by the ChatBotKit bot
+1. After sign-in, the `/connect` page lists all personal secrets required by the configured ChatBotKit bot
 2. Each connection shows its authentication status (connected/disconnected)
 3. Users click "Connect" to authenticate via OAuth popup (managed by ChatBotKit)
 4. OAuth callbacks are handled via `postMessage` to update connection status in real time
@@ -104,15 +104,15 @@ Open [http://localhost:3000](http://localhost:3000) to get started.
 
 ### Pre-Defined Tasks
 
-| Task | Description | Schedule |
-|------|-------------|----------|
-| Draft Email Responses | Scans inbox, analyzes emails, and drafts replies for review | Every hour |
-| Categorize & Label Emails | Categorizes emails by type and applies labels | Every hour |
-| Daily Inbox Digest | Generates a summary of inbox activity and highlights | Daily |
+| Task                      | Description                                                 | Schedule   |
+| ------------------------- | ----------------------------------------------------------- | ---------- |
+| Draft Email Responses     | Scans inbox, analyzes emails, and drafts replies for review | Every hour |
+| Categorize & Label Emails | Categorizes emails by type and applies labels               | Every hour |
+| Daily Inbox Digest        | Generates a summary of inbox activity and highlights        | Daily      |
 
 ### Autonomous Operation
 
-The template leverages ChatBotKit's task system for fully autonomous email processing:
+The template leverages ChatBotKit's task system for autonomous email processing:
 
 - Users sign in and connect their services once
 - They toggle on the tasks they want the agent to perform
@@ -124,7 +124,7 @@ The template leverages ChatBotKit's task system for fully autonomous email proce
 
 ```
 actions/
-  connections.js         # Server actions: listConnections, revokeConnection (GraphQL)
+  connections.js         # Server actions: listConnections, revokeConnection
   tasks.js               # Server actions: getTaskStates, enableTask, disableTask + task catalog
 app/
   layout.jsx             # Root layout with providers
@@ -137,13 +137,17 @@ app/
   api/auth/[...nextauth]/
     route.ts             # NextAuth API route
 components/
+  app/
+    app-header.jsx       # Shared authenticated header with avatar dropdown
   connections/
     connection-list.jsx  # Connection list with connect/revoke + OAuth callback handling
   providers.jsx          # Session provider wrapper
   ui/
     alert-dialog.jsx     # Alert dialog component (Radix)
+    avatar.jsx           # Avatar component (shadcn/ui)
     button.jsx           # Button component (shadcn/ui)
     card.jsx             # Card component (shadcn/ui)
+    dropdown-menu.jsx    # Dropdown menu component (Radix)
     separator.jsx        # Separator component (shadcn/ui)
 lib/
   auth-options.js        # NextAuth configuration
