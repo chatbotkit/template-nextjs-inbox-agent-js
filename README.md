@@ -4,6 +4,8 @@ An autonomous email inbox management agent powered by ChatBotKit. Sign in with G
 
 <img width="30%" src="https://github.com/user-attachments/assets/763acf3e-f640-4494-be7f-6f239a1494ad" /> <img width="30%" src="https://github.com/user-attachments/assets/ffe794f7-795f-4984-8cd2-643c10bab086" /> <img width="30%" src="https://github.com/user-attachments/assets/1211c910-a424-4b0b-a8f3-1e9f533ef064" />
 
+> **Note:** This template is deliberately bare-bones. It provides the minimal structure and wiring needed to get a working app, intentionally leaving styling, layout, and architectural choices open so you can build on top without fighting existing opinions.
+
 ## Why ChatBotKit?
 
 ChatBotKit provides the conversational AI backbone that powers the Inbox Agent's email processing. Instead of building complex NLP pipelines from scratch, you get:
