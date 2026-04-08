@@ -2,6 +2,8 @@
 
 An autonomous email inbox management agent powered by ChatBotKit. Sign in with Google, connect the personal secrets required by your ChatBotKit bot, then toggle pre-defined tasks on and off to let the agent draft responses, categorize emails, and generate daily digests automatically.
 
+<img width="30%" src="https://github.com/user-attachments/assets/763acf3e-f640-4494-be7f-6f239a1494ad" /> <img width="30%" src="https://github.com/user-attachments/assets/ffe794f7-795f-4984-8cd2-643c10bab086" /> <img width="30%" src="https://github.com/user-attachments/assets/1211c910-a424-4b0b-a8f3-1e9f533ef064" />
+
 ## Why ChatBotKit?
 
 ChatBotKit provides the conversational AI backbone that powers the Inbox Agent's email processing. Instead of building complex NLP pipelines from scratch, you get:
