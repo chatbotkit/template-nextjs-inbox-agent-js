@@ -75,7 +75,7 @@ Open [http://localhost:3000](http://localhost:3000) to get started.
 
 | Variable                | Description                                   |
 | ----------------------- | --------------------------------------------- |
-| `CHATBOTKIT_API_SECRET` | Your ChatBotKit API secret token              |
+| `CHATBOTKIT_API_TOKEN` | Your ChatBotKit API token              |
 | `CHATBOTKIT_BOT_ID`     | The bot ID configured with Gmail abilities    |
 | `NEXTAUTH_SECRET`       | Random string for NextAuth session encryption |
 | `NEXTAUTH_URL`          | Your app URL (e.g., `http://localhost:3000`)  |
